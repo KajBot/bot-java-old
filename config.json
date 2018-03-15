@@ -1,8 +1,8 @@
 {
     "twitchchannelid": "",
-	"twitchclientid": "",
-	"twitchpostchannel": "",
-	"twitchcheck": "false",
+    "twitchclientid": "",
+    "twitchpostchannel": "",
+    "twitchcheck": "false",
     "prefix": "-",
     "adminid": "",
     "authorid": "",
