@@ -23,4 +23,5 @@ public class Info {
     public static final String YTCHECK = CONFIG.getValue("ytcheck");
 
     public static final String BLACKLISTED_WEBSITES = CONFIG.getValue("blacklistedwebsites");
+    public static final String BLASTLIST_ENABLED = CONFIG.getValue("blacklistenabled");
 }

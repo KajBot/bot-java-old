@@ -10,5 +10,6 @@
 	"adminid": "",
 	"authorid": "",
 	"token": "",
-    "blacklistedwebsites": "example.com, anotherexample.com"
+	"blacklistedwebsites": "example.com, anotherexample.com"
+	"blacklistenabled": "false"
 }

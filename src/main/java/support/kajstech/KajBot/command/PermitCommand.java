@@ -4,6 +4,7 @@ package support.kajstech.KajBot.command;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import support.kajstech.KajBot.utils.IKajBot;
+import support.kajstech.KajBot.utils.Info;
 
 import java.util.*;
 
@@ -21,7 +22,7 @@ public class PermitCommand extends Command {
                     return;
                 }
 
-                if (!e.getMessage().getMentionedUsers().isEmpty()) {
+                if (!e.getMessage().getMentionedUsers().isEmpty() && Info.BLASTLIST_ENABLED.equalsIgnoreCase("true")) {
                     permitted.add(e.getMessage().getMentionedMembers().get(0));
                     chat.sendMessage(e.getMessage().getMentionedUsers().get(0) + " har nu adgang til at sende blacklisted links de næste 60 sekunder!");
                     new Timer().schedule(new TimerTask() {
