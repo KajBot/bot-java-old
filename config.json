@@ -1,15 +1,15 @@
 {
-	"twitchchannelid": "",
-	"twitchclientid": "",
-	"livepostchannel": "",
-	"twitchcheck": "false",
-	"ytcheck": "false",
-	"ytapikey": "",
-	"ytchannelid": "",
-	"prefix": "-",
-	"adminid": "",
-	"authorid": "",
-	"token": "",
-	"blacklistedwebsites": "example.com, anotherexample.com",
-	"blacklistenabled": "false"
+    "ytapikey": "",
+    "twitchchannelid": "",
+    "ytchannelid": "",
+    "ytcheck": "false",
+    "prefix": "-",
+    "twitchclientid": "",
+    "blacklistenabled": "false",
+    "authorid": "",
+    "livepostchannel": "",
+    "token": "",
+    "blacklisted": "example.com, anotherexample.com, test phrase, test",
+    "twitchcheck": "false",
+    "adminid": ""
 }

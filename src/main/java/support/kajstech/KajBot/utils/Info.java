@@ -22,6 +22,6 @@ public class Info {
     public static final String YT_API_KEY = CONFIG.getValue("ytapikey");
     public static final String YTCHECK = CONFIG.getValue("ytcheck");
 
-    public static final String BLACKLISTED_WEBSITES = CONFIG.getValue("blacklistedwebsites");
+    public static final String BLACKLISTED = CONFIG.getValue("blacklisted");
     public static final String BLASTLIST_ENABLED = CONFIG.getValue("blacklistenabled");
 }

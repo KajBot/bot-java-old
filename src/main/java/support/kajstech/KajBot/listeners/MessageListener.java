@@ -18,9 +18,9 @@ public class MessageListener extends ListenerAdapter {
     {
         if(event.getAuthor() == event.getJDA().getSelfUser()) return;
 
-        for (String item : Info.BLACKLISTED_WEBSITES.split("\\s*,\\s*")) {
+        for (String item : Info.BLACKLISTED.split("\\s*,\\s*")) {
             if (Info.BLASTLIST_ENABLED.equalsIgnoreCase("true") && !PermitCommand.permitted.contains(event.getMessage().getMember()) && !event.isFromType(ChannelType.PRIVATE) && !IKajBot.isAdmin(event.getMember()) && event.getMessage().getContentRaw().contains(item)) {
-                IKajBot.sendMessage(event.getMember().getAsMention() + " \u26D4 Hey, dette link er ikke tilladt herinde", event.getTextChannel());
+                IKajBot.sendMessage(event.getMember().getAsMention() + " \u26D4 Hey, din besked indholde et eller flere ord/hjemmesider om ikke er tilladte her inde", event.getTextChannel());
                 event.getMessage().delete().queue();
                 return;
             }
