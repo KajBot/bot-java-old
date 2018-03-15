@@ -13,54 +13,40 @@ import java.util.stream.Stream;
 
 public class TwitchHelper {
 
-
-
+    private static String CHANNELS_API = "https://api.twitch.tv/kraken/channels/" + Info.TWITCH_CHANNEL_ID + "/?client_id=" + Info.TWITCH_CLIENT_ID + "&api_version=5";
 
     public static void refresh(ReadyEvent jda) throws IOException {
-        if(TwitchHelper.checkIfOnline()){
-            jda.getJDA().getTextChannelById(Info.TWITCH_POST_CHANNEL).sendMessage(TwitchHelper.getName() + " er live lige nu, og der bliver spillet " +  TwitchHelper.getGame() + "! Se med her " + TwitchHelper.getURL()).queue();
+        if(checkLive()){
+            jda.getJDA().getTextChannelById(Info.LIVE_POST_CHANNEL).sendMessage(getName() + " er live lige nu, og der bliver spillet " +  getGame() + "! Se med her " + getURL()).queue();
         }
     }
 
-
-
-
-
-
-    private static String channel = Info.TWITCH_CHANNEL_ID;
-
-    private static boolean checkIfOnline() throws IOException {
-        String streamsUrl = "https://api.twitch.tv/kraken/streams/" + channel + "/?client_id=" + Info.TWITCH_CLIENT_ID + "&api_version=5";
-
-
-        String jsonStreams = readFromUrl(streamsUrl);// reads text from URL
+    private static boolean checkLive() throws IOException {
+        String jsonStreams = readFromUrl("https://api.twitch.tv/kraken/streams/" + Info.TWITCH_CHANNEL_ID + "/?client_id=" + Info.TWITCH_CLIENT_ID + "&api_version=5");
         JSONObject json = new JSONObject(jsonStreams);
 
         return !json.isNull("stream");
     }
 
-    public static String getName () throws IOException{
-
-        String channelsUrl = "https://api.twitch.tv/kraken/channels/" + channel + "/?client_id=" + Info.TWITCH_CLIENT_ID + "&api_version=5";
-        String jsonChannels = readFromUrl(channelsUrl);// reads text from URL
+    private static String getName () throws IOException{
+        if(!checkLive()) return null;
+        String jsonChannels = readFromUrl(CHANNELS_API);
         JSONObject jsonC = new JSONObject(jsonChannels);
 
         return jsonC.getString("name");
     }
 
     private static String getGame() throws IOException{
-
-        String channelsUrl = "https://api.twitch.tv/kraken/channels/" + channel + "/?client_id=" + Info.TWITCH_CLIENT_ID + "&api_version=5";
-        String jsonChannels = readFromUrl(channelsUrl);// reads text from URL
+        if(!checkLive()) return null;
+        String jsonChannels = readFromUrl(CHANNELS_API);
         JSONObject jsonC = new JSONObject(jsonChannels);
 
         return jsonC.getString("game");
     }
 
     private static String getURL() throws IOException{
-
-        String channelsUrl = "https://api.twitch.tv/kraken/channels/" + channel + "/?client_id=" + Info.TWITCH_CLIENT_ID + "&api_version=5";
-        String jsonChannels = readFromUrl(channelsUrl);// reads text from URL
+        if(!checkLive()) return null;
+        String jsonChannels = readFromUrl(CHANNELS_API);
         JSONObject jsonC = new JSONObject(jsonChannels);
 
         return jsonC.getString("url");

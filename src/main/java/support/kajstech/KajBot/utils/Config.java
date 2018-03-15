@@ -20,7 +20,7 @@ class Config {
         }
 
         JSONObject object = read(configFile);
-        if (object.has("token") && object.has("prefix") && object.has("authorid") && object.has("adminid") && object.has("twitchchannelid") && object.has("twitchclientid") && object.has("twitchpostchannel") && object.has("twitchcheck")) {
+        if (object.has("token") && object.has("prefix") && object.has("authorid") && object.has("adminid") && object.has("twitchchannelid") && object.has("twitchclientid") && object.has("livepostchannel") && object.has("twitchcheck")) {
             configObject = object;
         } else {
             create(); // If a value is missing, regenerate the config file.
@@ -41,10 +41,17 @@ class Config {
                             .put("prefix", "-")
                             .put("token", "")
                             .put("adminid", "")
+
+                            .put("livepostchannel", "")
+
                             .put("twitchchannelid", "")
                             .put("twitchclientid", "")
-                            .put("twitchpostchannel", "")
                             .put("twitchcheck", "false")
+
+                            .put("ytchannelid", "")
+                            .put("ytapikey", "")
+                            .put("ytcheck", "")
+
                             .toString(4)
                             .getBytes());
         } catch (IOException ex) {

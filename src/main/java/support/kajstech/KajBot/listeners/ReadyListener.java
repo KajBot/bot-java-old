@@ -17,9 +17,10 @@ public class ReadyListener extends ListenerAdapter {
         LogHelper.info( "Using command prefix: " + Info.PREFIX);
         LogHelper.info( "Current ping: " + event.getJDA().getPing() + "ms");
 
-        if(Info.TWITCHCHECK.equalsIgnoreCase("true")) {
-            KajBot.updateTwitch(event);
-        }
+
+        KajBot.updateStream(event);
+        //if(Info.TWITCHCHECK.equalsIgnoreCase("true")) KajBot.updateTwitch(event);
+        //if(Info.YTCHECK.equalsIgnoreCase("true")) KajBot.updateYT(event);
 
     }
 

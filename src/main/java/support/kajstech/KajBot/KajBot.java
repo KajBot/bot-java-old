@@ -14,10 +14,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import support.kajstech.KajBot.command.*;
 import support.kajstech.KajBot.listeners.MessageListener;
 import support.kajstech.KajBot.listeners.ReadyListener;
-import support.kajstech.KajBot.utils.IKajBot;
-import support.kajstech.KajBot.utils.Info;
-import support.kajstech.KajBot.utils.LogHelper;
-import support.kajstech.KajBot.utils.TwitchHelper;
+import support.kajstech.KajBot.utils.*;
 
 import javax.security.auth.login.LoginException;
 import java.io.IOException;
@@ -105,10 +102,12 @@ public class KajBot extends ListenerAdapter {
                 + "\n";
     }
 
-    public static void updateTwitch(ReadyEvent event){
+    public static void updateStream(ReadyEvent event){
         while (true) {
             try {
-                TwitchHelper.refresh(event);
+                if(Info.YTCHECK.equalsIgnoreCase("false") && Info.YTCHECK.equalsIgnoreCase("false")) return;
+                if(Info.TWITCHCHECK.equalsIgnoreCase("true")) TwitchHelper.refresh(event);
+                if(Info.YTCHECK.equalsIgnoreCase("true")) YouTubeHelper.refresh(event);
                 Thread.sleep(60000);
             } catch (IOException | InterruptedException io) {
                 io.printStackTrace();
