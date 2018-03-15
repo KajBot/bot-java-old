@@ -1,6 +1,10 @@
 {
+    "twitchchannelid": "",
+	"twitchclientid": "",
+	"twitchpostchannel": "",
+	"twitchcheck": "false",
     "prefix": "-",
+    "adminid": "",
     "authorid": "",
-    "token": "",
-    "adminid": ""
+    "token": ""
 }

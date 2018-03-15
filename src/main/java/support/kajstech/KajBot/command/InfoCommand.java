@@ -2,16 +2,12 @@ package support.kajstech.KajBot.command;
 
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.OnlineStatus;
-import net.dv8tion.jda.core.entities.Game;
-import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import support.kajstech.KajBot.utils.IKajBot;
 
-import java.time.Instant;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -73,7 +69,7 @@ public class InfoCommand extends Command {
 
         embed.addField(":first_quarter_moon: Status", "Spil: `"+game+"`\nStatus: `"+status+"`\n", true);
 
-        embed.addField(":stopwatch: Tid", "Tilsluttet: `"+join+"`\n"+
+        embed.addField(":stopwatch: Tid", "Tilsluttet til server: `"+join+"`\n"+
                 "Tilmeldt: `"+register+"`\n", true);
 
         e.getChannel().sendMessage(embed.build()).queue();

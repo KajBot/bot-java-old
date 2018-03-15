@@ -8,6 +8,7 @@ import net.dv8tion.jda.core.JDAInfo;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.events.Event;
+import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.hooks.InterfacedEventManager;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import support.kajstech.KajBot.command.*;
@@ -16,16 +17,18 @@ import support.kajstech.KajBot.listeners.ReadyListener;
 import support.kajstech.KajBot.utils.IKajBot;
 import support.kajstech.KajBot.utils.Info;
 import support.kajstech.KajBot.utils.LogHelper;
+import support.kajstech.KajBot.utils.TwitchHelper;
 
 import javax.security.auth.login.LoginException;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class KajBot extends ListenerAdapter {
 
-
     public static void main(String[] args) {
+
         LogHelper.info(getVersionInfo());
 
         String javaVersionMinor = null;
@@ -100,6 +103,17 @@ public class KajBot extends ListenerAdapter {
                 + "\n\tJDA:                  " + JDAInfo.VERSION
                 + "\n\tLavaPlayer:           " + PlayerLibrary.VERSION
                 + "\n";
+    }
+
+    public static void updateTwitch(ReadyEvent event){
+        while (true) {
+            try {
+                TwitchHelper.refresh(event);
+                Thread.sleep(60000);
+            } catch (IOException | InterruptedException io) {
+                io.printStackTrace();
+            }
+        }
     }
 
 }

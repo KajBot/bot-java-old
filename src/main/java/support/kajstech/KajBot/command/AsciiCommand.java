@@ -5,7 +5,9 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import support.kajstech.KajBot.utils.IKajBot;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
