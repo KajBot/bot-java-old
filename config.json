@@ -1,13 +1,13 @@
 {
-    "twitchchannelid": "",
+	"twitchchannelid": "",
 	"twitchclientid": "",
 	"livepostchannel": "",
 	"twitchcheck": "false",
-    "ytcheck": "false",
-    "ytapikey": "",
-    "ytchannelid": "",
-    "prefix": "-",
-    "adminid": "",
-    "authorid": "",
-    "token": ""
+	"ytcheck": "false",
+	"ytapikey": "",
+	"ytchannelid": "",
+	"prefix": "-",
+	"adminid": "",
+	"authorid": "",
+	"token": ""
 }
