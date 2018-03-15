@@ -34,7 +34,6 @@ public class IKajBot {
         return IKajBot.AppInfoHolder.INSTANCE;
     }
 
-    //holder pattern
     private static final class AppInfoHolder {
         private static final IKajBot INSTANCE = new IKajBot();
     }

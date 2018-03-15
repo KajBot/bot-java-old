@@ -19,8 +19,6 @@ public class ReadyListener extends ListenerAdapter {
 
 
         KajBot.updateStream(event);
-        //if(Info.TWITCHCHECK.equalsIgnoreCase("true")) KajBot.updateTwitch(event);
-        //if(Info.YTCHECK.equalsIgnoreCase("true")) KajBot.updateYT(event);
 
     }
 

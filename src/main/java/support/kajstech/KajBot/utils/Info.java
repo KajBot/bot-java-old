@@ -3,6 +3,10 @@ package support.kajstech.KajBot.utils;
 
 public class Info {
     private static final Config CONFIG = new Config();
+
+
+
+
     public static final String AUTHOR_ID = CONFIG.getValue("authorid");
     public static final String PREFIX = CONFIG.getValue("prefix");
     public static final String TOKEN = CONFIG.getValue("token");
@@ -17,4 +21,6 @@ public class Info {
     public static final String YT_CHANNEL_ID = CONFIG.getValue("ytchannelid");
     public static final String YT_API_KEY = CONFIG.getValue("ytapikey");
     public static final String YTCHECK = CONFIG.getValue("ytcheck");
+
+    public static final String BLACKLISTED_WEBSITES = CONFIG.getValue("blacklistedwebsites");
 }

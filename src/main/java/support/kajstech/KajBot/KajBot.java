@@ -65,6 +65,7 @@ public class KajBot extends ListenerAdapter {
         builder.addEventListener(new ClearCommand());
         builder.addEventListener(new AsciiCommand());
         builder.addEventListener(new InfoCommand());
+        builder.addEventListener(new PermitCommand());
 
 
         try {

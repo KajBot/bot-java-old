@@ -9,5 +9,6 @@
 	"prefix": "-",
 	"adminid": "",
 	"authorid": "",
-	"token": ""
+	"token": "",
+    "blacklistedwebsites": "example.com, anotherexample.com"
 }
