@@ -5,7 +5,7 @@ public class Info {
     private static final Config CONFIG = new Config();
 
 
-    public static final String AUTHOR_ID = CONFIG.getValue("authorid");
+    public static final String OWNER_ID = CONFIG.getValue("ownerid");
     public static final String PREFIX = CONFIG.getValue("prefix");
     public static final String TOKEN = CONFIG.getValue("token");
     public static final String ADMIN_ID = CONFIG.getValue("adminid");
@@ -23,4 +23,5 @@ public class Info {
     public static final String BLACKLISTED = CONFIG.getValue("blacklisted");
     public static final String BLASTLIST_ENABLED = CONFIG.getValue("blacklistenabled");
     public static final String BLACKLIST_LINKS_ENABLED = CONFIG.getValue("blacklistlinksenabled");
+    public static final String BLACKLIST_BYPASS_ID = CONFIG.getValue("blacklistbypassid");
 }

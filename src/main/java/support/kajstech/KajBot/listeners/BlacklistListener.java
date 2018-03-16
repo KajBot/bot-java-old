@@ -19,7 +19,7 @@ public class BlacklistListener extends ListenerAdapter {
         if (event.getAuthor() == event.getJDA().getSelfUser()) return;
 
 
-        if (!(PermitCommand.permitted.contains(event.getMessage().getMember()) || event.isFromType(ChannelType.PRIVATE) || IKajBot.isAdmin(event.getMember()))) {
+        if (!(PermitCommand.permitted.contains(event.getMessage().getMember()) || event.isFromType(ChannelType.PRIVATE) || IKajBot.isAdmin(event.getMember()) || event.getMember().getRoles().stream().anyMatch(r -> r.getId().equals(Info.BLACKLIST_BYPASS_ID)))) {
 
             Pattern p = Pattern.compile(URL_REGEX);
             Matcher m = p.matcher(event.getMessage().getContentRaw());

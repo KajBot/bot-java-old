@@ -36,7 +36,7 @@ abstract class Command extends ListenerAdapter {
 
         if (e.getAuthor().isBot() || !isValidCommand(e.getMessage()))
             return; // Ignore message if it's not a command or sent by a bot
-        if (authorExclusive() && !e.getAuthor().getId().equals(Info.AUTHOR_ID))
+        if (authorExclusive() && !e.getAuthor().getId().equals(Info.OWNER_ID))
             return; // Ignore if the command is meant to be used by the owner only
         if (e.isFromType(ChannelType.TEXT) && IKajBot.canNotTalk(e.getTextChannel()))
             return; // Ignore if we cannot talk in the channel anyway
@@ -56,7 +56,7 @@ abstract class Command extends ListenerAdapter {
                         + "**\nBesked:\n*" + IKajBot.stripFormatting(e.getMessage().getContentDisplay())
                         + "*\n\nFejl:```java\n" + ex.getMessage() + "```";
                 if (msg.length() <= 2000) {
-                    chat.sendPrivateMessageToUser(msg, e.getJDA().getUserById(Info.AUTHOR_ID));
+                    chat.sendPrivateMessageToUser(msg, e.getJDA().getUserById(Info.OWNER_ID));
                 }
             }
         }

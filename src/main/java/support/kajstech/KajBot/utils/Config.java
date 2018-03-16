@@ -20,7 +20,7 @@ class Config {
         }
 
         JSONObject object = read(configFile);
-        if (object.has("token") && object.has("prefix") && object.has("authorid") && object.has("adminid") && object.has("twitchchannelid") && object.has("twitchclientid") && object.has("livepostchannel") && object.has("twitchcheck") && object.has("blacklisted") && object.has("blacklistenabled") && object.has("blacklistlinksenabled")) {
+        if (object.has("token") && object.has("prefix") && object.has("ownerid") && object.has("adminid") && object.has("twitchchannelid") && object.has("twitchclientid") && object.has("livepostchannel") && object.has("twitchcheck") && object.has("blacklisted") && object.has("blacklistenabled") && object.has("blacklistlinksenabled") && object.has("blacklistbypassid")) {
             configObject = object;
         } else {
             create(); // If a value is missing, regenerate the config file.
@@ -37,7 +37,7 @@ class Config {
         try {
             Files.write(Paths.get(configFile.getPath()),
                     new JSONObject()
-                            .put("authorid", "")
+                            .put("ownerid", "")
                             .put("prefix", "-")
                             .put("token", "")
                             .put("adminid", "")
@@ -55,6 +55,7 @@ class Config {
                             .put("blacklisted", "example.com, anotherexample.com, test phrase, test")
                             .put("blacklistenabled", "false")
                             .put("blacklistlinksenabled", "false")
+                            .put("blacklistbypassid", "")
 
                             .toString(4)
                             .getBytes());
