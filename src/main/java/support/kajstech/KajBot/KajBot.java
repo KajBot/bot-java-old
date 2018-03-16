@@ -76,15 +76,6 @@ public class KajBot extends ListenerAdapter {
 
     }
 
-    private static class ThreadedEventManager extends InterfacedEventManager {
-        private final ExecutorService threadPool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1);
-
-        @Override
-        public void handle(Event e) {
-            threadPool.submit(() -> super.handle(e));
-        }
-    }
-
     private static String getVersionInfo() {
         return "\n\n" +
                 "    _   ,         __        \n" +
@@ -103,16 +94,25 @@ public class KajBot extends ListenerAdapter {
                 + "\n";
     }
 
-    public static void updateStream(ReadyEvent event){
+    public static void updateStream(ReadyEvent event) {
         while (true) {
             try {
-                if(Info.YTCHECK.equalsIgnoreCase("false") && Info.YTCHECK.equalsIgnoreCase("false")) return;
-                if(Info.TWITCHCHECK.equalsIgnoreCase("true")) TwitchHelper.refresh(event);
-                if(Info.YTCHECK.equalsIgnoreCase("true")) YouTubeHelper.refresh(event);
+                if (Info.YTCHECK.equalsIgnoreCase("false") && Info.YTCHECK.equalsIgnoreCase("false")) return;
+                if (Info.TWITCHCHECK.equalsIgnoreCase("true")) TwitchHelper.refresh(event);
+                if (Info.YTCHECK.equalsIgnoreCase("true")) YouTubeHelper.refresh(event);
                 Thread.sleep(60000);
             } catch (IOException | InterruptedException io) {
                 io.printStackTrace();
             }
+        }
+    }
+
+    private static class ThreadedEventManager extends InterfacedEventManager {
+        private final ExecutorService threadPool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1);
+
+        @Override
+        public void handle(Event e) {
+            threadPool.submit(() -> super.handle(e));
         }
     }
 

@@ -52,7 +52,7 @@ class Config {
                             .put("ytapikey", "")
                             .put("ytcheck", "false")
 
-                            .put("blacklisted", "")
+                            .put("blacklisted", "example.com, anotherexample.com, test phrase, test")
                             .put("blacklistenabled", "false")
                             .put("blacklistlinksenabled", "false")
 

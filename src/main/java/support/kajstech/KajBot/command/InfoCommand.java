@@ -14,6 +14,17 @@ import java.util.Locale;
 
 public class InfoCommand extends Command {
 
+    private static String VariableToString(String regex, String input) {
+        String[] splitting = new String[]{input};
+        if (regex != null) splitting = input.split(regex);
+        StringBuilder splittedBuilder = new StringBuilder();
+        for (String s : splitting) {
+            splittedBuilder.append(s.substring(0, 1).toUpperCase(Locale.ENGLISH)).append(s.substring(1).toLowerCase(Locale.ENGLISH)).append(" ");
+        }
+        String splitted = splittedBuilder.toString();
+        return splitted.substring(0, splitted.length() - 1);
+    }
+
     @Override
     public void executeCommand(String[] args, MessageReceivedEvent e, MessageSender chat) {
 
@@ -23,10 +34,13 @@ public class InfoCommand extends Command {
                 break;
 
             case 1:
-                if (!IKajBot.isAdmin(e.getMember())) { chat.sendMessage("\u26D4 Du har ikke adgang til at gøre dette!"); return; }
+                if (!IKajBot.isAdmin(e.getMember())) {
+                    chat.sendMessage("\u26D4 Du har ikke adgang til at gøre dette!");
+                    return;
+                }
 
-                List <User> userMention = e.getMessage().getMentionedUsers();
-                for(User user : userMention) {
+                List<User> userMention = e.getMessage().getMentionedUsers();
+                for (User user : userMention) {
                     embedUser(user, e.getGuild().getMember(user), e);
                 }
                 break;
@@ -40,8 +54,7 @@ public class InfoCommand extends Command {
         return Collections.singletonList("info");
     }
 
-    private void embedUser(User user, Member member, MessageReceivedEvent e)
-    {
+    private void embedUser(User user, Member member, MessageReceivedEvent e) {
         String name, id, dis, nickname, icon, status, game, join, register;
 
         icon = user.getEffectiveAvatarUrl();
@@ -58,31 +71,21 @@ public class InfoCommand extends Command {
         game = stat == null ? "N/A" : member.getGame() == null ? "N/A" : member.getGame().getName();
 
         /* Time */
-            join = member == null ? "N/A" : DateTimeFormatter.ofPattern("d/M/u HH:mm:ss").format(member.getJoinDate());
+        join = member == null ? "N/A" : DateTimeFormatter.ofPattern("d/M/u HH:mm:ss").format(member.getJoinDate());
         register = DateTimeFormatter.ofPattern("d/M/u HH:mm:ss").format(user.getCreationTime());
 
         EmbedBuilder embed = new EmbedBuilder()
                 .setAuthor(nickname, null, icon).setThumbnail(icon);
 
-        embed.addField(":spy: Identitet", "ID: `"+id+"`\n"+
-                "Brugernavn: `"+name+ "#" +dis+"`", true);
+        embed.addField(":spy: Identitet", "ID: `" + id + "`\n" +
+                "Brugernavn: `" + name + "#" + dis + "`", true);
 
-        embed.addField(":first_quarter_moon: Status", "Spil: `"+game+"`\nStatus: `"+status+"`\n", true);
+        embed.addField(":first_quarter_moon: Status", "Spil: `" + game + "`\nStatus: `" + status + "`\n", true);
 
-        embed.addField(":stopwatch: Tid", "Tilsluttet til server: `"+join+"`\n"+
-                "Tilmeldt: `"+register+"`\n", true);
+        embed.addField(":stopwatch: Tid", "Tilsluttet til server: `" + join + "`\n" +
+                "Tilmeldt: `" + register + "`\n", true);
 
         e.getChannel().sendMessage(embed.build()).queue();
-    }
-
-    private static String VariableToString(String regex, String input) {
-        String[] splitting = new String[] {input};
-        if(regex!=null) splitting = input.split(regex);
-        String splitted = "";
-        for (String s : splitting) {
-            splitted += s.substring(0, 1).toUpperCase(Locale.ENGLISH) + s.substring(1).toLowerCase(Locale.ENGLISH) + " ";
-        }
-        return splitted.substring(0,splitted.length()-1);
     }
 
 }

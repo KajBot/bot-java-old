@@ -8,14 +8,13 @@ import support.kajstech.KajBot.utils.Info;
 import support.kajstech.KajBot.utils.LogHelper;
 
 
-
 public class ReadyListener extends ListenerAdapter {
 
     public void onReady(ReadyEvent event) {
 
-        LogHelper.info( "Logged in...");
-        LogHelper.info( "Using command prefix: " + Info.PREFIX);
-        LogHelper.info( "Current ping: " + event.getJDA().getPing() + "ms");
+        LogHelper.info("Logged in...");
+        LogHelper.info("Using command prefix: " + Info.PREFIX);
+        LogHelper.info("Current ping: " + event.getJDA().getPing() + "ms");
 
 
         KajBot.updateStream(event);

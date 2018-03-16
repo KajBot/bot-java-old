@@ -263,7 +263,8 @@ public class TrackManager extends AudioEventAdapter {
             } else {
                 player.playTrack(queue.element().getTrack());
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
     public void shuffleQueue() {

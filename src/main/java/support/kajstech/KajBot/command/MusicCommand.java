@@ -164,7 +164,7 @@ public class MusicCommand extends Command {
                 String input = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
                 switch (args[0].toLowerCase()) {
                     case "yt": // Query YouTube for a music video
-                        if(input.length() >= 100){
+                        if (input.length() >= 100) {
                             chat.sendEmbed(ERROR, "\u26A0 Ingen sange blev fundet.");
                         }
                         input = "ytsearch: " + input;
@@ -188,7 +188,7 @@ public class MusicCommand extends Command {
 
                         if (IKajBot.isInteger(input)) {
                             Integer VOLUME = Integer.parseInt(input);
-                            if(VOLUME < 1 || VOLUME > 200) {
+                            if (VOLUME < 1 || VOLUME > 200) {
                                 chat.sendMessage("\u26D4 Du skal vælge et helt tal mellem 1-200!");
                                 return;
                             }

@@ -27,7 +27,10 @@ public class EvalCommand extends Command {
     @Override
     public void executeCommand(String[] args, MessageReceivedEvent e, Command.MessageSender chat) {
 
-        if (!IKajBot.isAdmin(e.getMember())) { chat.sendMessage("\u26D4 Du har ikke adgang til at gøre dette!"); return; }
+        if (!IKajBot.isAdmin(e.getMember())) {
+            chat.sendMessage("\u26D4 Du har ikke adgang til at gøre dette!");
+            return;
+        }
 
         String allArgs = e.getMessage().getContentDisplay();
         if (allArgs.contains(" ")) {

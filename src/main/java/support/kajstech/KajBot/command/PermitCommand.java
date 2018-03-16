@@ -14,7 +14,7 @@ public class PermitCommand extends Command {
 
     @Override
     public void executeCommand(String[] args, MessageReceivedEvent e, MessageSender chat) {
-        List <Member> userMention = e.getMessage().getMentionedMembers();
+        List<Member> userMention = e.getMessage().getMentionedMembers();
 
         switch (args.length) {
             case 1:
@@ -23,7 +23,7 @@ public class PermitCommand extends Command {
                     return;
                 }
                 if (!e.getMessage().getMentionedUsers().isEmpty() && Info.BLASTLIST_ENABLED.equalsIgnoreCase("true")) {
-                    for(Member member : userMention) {
+                    for (Member member : userMention) {
                         permitted.add(member);
                         chat.sendMessage(member.getAsMention() + " har nu adgang til at sende blacklisted ord/links de næste 60 sekunder!");
                         new Timer().schedule(new TimerTask() {

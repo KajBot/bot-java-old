@@ -14,13 +14,19 @@ public class GameCommand extends Command {
     @Override
     public void executeCommand(String[] args, MessageReceivedEvent e, MessageSender chat) {
         Guild guild = e.getGuild();
-                if (!IKajBot.isAdmin(e.getMember())) { chat.sendMessage("\u26D4 Du har ikke adgang til at gøre dette!"); return; }
-                    StringBuilder sb = new StringBuilder();
-                    Arrays.stream(args).forEach(s -> sb.append(s).append(" "));
+        if (!IKajBot.isAdmin(e.getMember())) {
+            chat.sendMessage("\u26D4 Du har ikke adgang til at gøre dette!");
+            return;
+        }
+        StringBuilder sb = new StringBuilder();
+        Arrays.stream(args).forEach(s -> sb.append(s).append(" "));
 
-                    if(sb.toString().length() < 1) {chat.sendMessage("\u26D4 Du mangler at angive en besked!"); return; }
+        if (sb.toString().length() < 1) {
+            chat.sendMessage("\u26D4 Du mangler at angive en besked!");
+            return;
+        }
 
-                    guild.getJDA().getPresence().setGame(Game.playing(sb.toString()));
+        guild.getJDA().getPresence().setGame(Game.playing(sb.toString()));
     }
 
     @Override

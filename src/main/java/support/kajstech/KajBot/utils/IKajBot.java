@@ -11,35 +11,6 @@ import java.util.Properties;
 public class IKajBot {
 
 
-    public static boolean isInteger(String s) {
-        return isInteger(s,10);
-    }
-
-    private static boolean isInteger(String s, int radix) {
-        if(s.isEmpty()) return false;
-        for(int i = 0; i < s.length(); i++) {
-            if(i == 0 && s.charAt(i) == '-') {
-                if(s.length() == 1) return false;
-                else continue;
-            }
-            if(Character.digit(s.charAt(i),radix) < 0) return false;
-        }
-        return true;
-    }
-
-
-    public static boolean isAdmin(Member member) {
-        return member.getRoles().stream().anyMatch(r -> r.getId().equals(Info.ADMIN_ID));
-    }
-
-    public static IKajBot getAppInfo() {
-        return IKajBot.AppInfoHolder.INSTANCE;
-    }
-
-    private static final class AppInfoHolder {
-        private static final IKajBot INSTANCE = new IKajBot();
-    }
-
     public final String VERSION;
     public final String BUILD_NUMBER;
     public final String BUILD_TIMESTAMP;
@@ -57,7 +28,29 @@ public class IKajBot {
         this.BUILD_TIMESTAMP = prop.getProperty("buildTimestamp");
     }
 
+    public static boolean isInteger(String s) {
+        return isInteger(s, 10);
+    }
 
+    private static boolean isInteger(String s, int radix) {
+        if (s.isEmpty()) return false;
+        for (int i = 0; i < s.length(); i++) {
+            if (i == 0 && s.charAt(i) == '-') {
+                if (s.length() == 1) return false;
+                else continue;
+            }
+            if (Character.digit(s.charAt(i), radix) < 0) return false;
+        }
+        return true;
+    }
+
+    public static boolean isAdmin(Member member) {
+        return member.getRoles().stream().anyMatch(r -> r.getId().equals(Info.ADMIN_ID));
+    }
+
+    public static IKajBot getAppInfo() {
+        return IKajBot.AppInfoHolder.INSTANCE;
+    }
 
     public static boolean canNotTalk(TextChannel channel) {
         if (channel == null) return true;
@@ -96,6 +89,10 @@ public class IKajBot {
                 .replace("_", "\\_")
                 .replace("~~", "\\~\\~")
                 .replace(">", "\u180E>");
+    }
+
+    private static final class AppInfoHolder {
+        private static final IKajBot INSTANCE = new IKajBot();
     }
 
 }

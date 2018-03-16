@@ -13,38 +13,7 @@ import java.util.stream.Collectors;
 
 public class AsciiCommand extends Command {
 
-    @Override
-    public void executeCommand(String[] args, MessageReceivedEvent e, MessageSender chat) {
-        if (!IKajBot.isAdmin(e.getMember())) { chat.sendMessage("\u26D4 Du har ikke adgang til at gøre dette!"); return; }
-        if (args.length == 0) {
-            chat.sendEmbed("\n", "Her er en **[fuld liste over Ascii fontsne]("+asciiArtUrl+"fonts_list)**. De bliver tilfældigt valgt.");
-        } else {
-            String input = "";
-            for (int i = 0; i < args.length; i++) { input += i==args.length-1?args[i]:args[i]+" "; }
-
-            List<String> fonts = getAsciiFonts();
-            String font = fonts.get(randomNum(0, fonts.size() - 1));
-
-            try {
-                String ascii = getAsciiArt(input, font);
-
-                if (ascii.length()>1900) {
-                    chat.sendMessage("```fix\n\nAscii teksten er for stor```");
-                    return;
-                }
-
-                chat.sendMessage("**Font:** " + font + "\n```fix\n\n" + ascii + "```");
-            } catch (IllegalArgumentException iae) {
-                chat.sendMessage("```fix\n\nDin tekst indeholder ugyldige tegn!```");
-            }
-        }
-    }
-
-    @Override
-    public List<String> getAlias() {
-        return Collections.singletonList("ascii");
-    }
-
+    private final static String asciiArtUrl = "http://artii.herokuapp.com/";
 
     private static int randomNum(int start, int end) {
 
@@ -56,20 +25,15 @@ public class AsciiCommand extends Command {
         return (int) Math.floor(Math.random() * (end - start + 1) + start);
     }
 
-
-    private final static String asciiArtUrl = "http://artii.herokuapp.com/";
-
-
     private static String getAsciiArt(String ascii, String font) {
         try {
-            StringBuilder url = new StringBuilder(asciiArtUrl).append("make").append("?text=").append(ascii.replaceAll(" ", "+"))
-                    .append(font==null||font.isEmpty()?"":"&font="+font);
-            return Unirest.get(url.toString()).asString().getBody();
+            String url = asciiArtUrl + "make" + "?text=" + ascii.replaceAll(" ", "+") +
+                    (font == null || font.isEmpty() ? "" : "&font=" + font);
+            return Unirest.get(url).asString().getBody();
         } catch (UnirestException e) {
-            return "Fail to get the ascii art.";
+            return "Fejl i at hente ASCII tekst.";
         }
     }
-
 
     private static List<String> getAsciiFonts() {
         String url = asciiArtUrl + "fonts_list";
@@ -85,6 +49,43 @@ public class AsciiCommand extends Command {
 
         //fontList.forEach(System.out::println);
         return fontList;
+    }
+
+    @Override
+    public void executeCommand(String[] args, MessageReceivedEvent e, MessageSender chat) {
+        if (!IKajBot.isAdmin(e.getMember())) {
+            chat.sendMessage("\u26D4 Du har ikke adgang til at gøre dette!");
+            return;
+        }
+        if (args.length == 0) {
+            chat.sendEmbed("\n", "Her er en **[fuld liste over Ascii fontsne](" + asciiArtUrl + "fonts_list)**. De bliver tilfældigt valgt.");
+        } else {
+            StringBuilder input = new StringBuilder();
+            for (int i = 0; i < args.length; i++) {
+                input.append(i == args.length - 1 ? args[i] : args[i] + " ");
+            }
+
+            List<String> fonts = getAsciiFonts();
+            String font = fonts.get(randomNum(0, fonts.size() - 1));
+
+            try {
+                String ascii = getAsciiArt(input.toString(), font);
+
+                if (ascii.length() > 1900) {
+                    chat.sendMessage("```fix\n\nAscii teksten er for stor```");
+                    return;
+                }
+
+                chat.sendMessage("**Font:** " + font + "\n```fix\n\n" + ascii + "```");
+            } catch (IllegalArgumentException iae) {
+                chat.sendMessage("```fix\n\nDin tekst indeholder ugyldige tegn!```");
+            }
+        }
+    }
+
+    @Override
+    public List<String> getAlias() {
+        return Collections.singletonList("ascii");
     }
 
 }

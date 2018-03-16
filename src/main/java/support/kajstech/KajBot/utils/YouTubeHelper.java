@@ -16,7 +16,7 @@ public class YouTubeHelper {
     private static String LIVE_API_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&type=video&eventType=live&maxResults=1&channelId=" + Info.YT_CHANNEL_ID + "&key=" + Info.YT_API_KEY;
 
     public static void refresh(ReadyEvent jda) throws IOException {
-        if(checkLive()){
+        if (checkLive()) {
             jda.getJDA().getTextChannelById(Info.LIVE_POST_CHANNEL).sendMessage(getName() + " er live lige nu på YouTube! Se med her https://www.youtube.com/watch?v=" + getId()).queue();
         }
     }
@@ -28,22 +28,21 @@ public class YouTubeHelper {
         return json.getJSONArray("items").length() > 0;
     }
 
-    private static String getId () throws IOException{
-        if(!checkLive()) return null;
+    private static String getId() throws IOException {
+        if (!checkLive()) return null;
         String jsonChannels = readFromUrl(LIVE_API_URL);
         JSONObject json = new JSONObject(jsonChannels);
 
         return json.getJSONArray("items").getJSONObject(0).getJSONObject("id").getString("videoId");
     }
 
-    private static String getName () throws IOException{
-        if(!checkLive()) return null;
+    private static String getName() throws IOException {
+        if (!checkLive()) return null;
         String jsonChannels = readFromUrl(LIVE_API_URL);
         JSONObject json = new JSONObject(jsonChannels);
 
         return json.getJSONArray("items").getJSONObject(0).getJSONObject("snippet").getString("channelTitle");
     }
-
 
 
     private static String readFromUrl(String url) throws IOException {
