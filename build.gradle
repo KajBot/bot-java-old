@@ -23,7 +23,7 @@ tasks.withType(JavaCompile) {
 }
 task fatJar(type: Jar) {
     manifest {
-        attributes 'Implementation-Title': 'Fat Emily',
+        attributes 'Implementation-Title': 'Fat KajBot',
                 'Implementation-Version': version,
                 'Main-Class': 'support.kajstech.KajBot.KajBot'
     }
@@ -38,7 +38,6 @@ processResources {
         ]
     }
 }
-
 
 
 repositories {
