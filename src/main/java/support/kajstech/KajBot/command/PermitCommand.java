@@ -29,7 +29,7 @@ public class PermitCommand extends Command {
                         new Timer().schedule(new TimerTask() {
                             @Override
                             public void run() {
-                                permitted.remove(e.getMessage().getMentionedMembers().get(0));
+                                permitted.remove(member);
                             }
                         }, 60000);
                     }
