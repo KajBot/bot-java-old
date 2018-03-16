@@ -7,12 +7,14 @@
 
 import org.apache.tools.ant.filters.ReplaceTokens
 
+import java.text.SimpleDateFormat
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'maven'
 
 group = 'support.kajstech'
-version = '2.5.6'
+version = '2.5.7'
 
 description = "Discord KajBot"
 
@@ -27,7 +29,7 @@ task fatJar(type: Jar) {
                 'Implementation-Version': version,
                 'Main-Class': 'support.kajstech.KajBot.KajBot'
     }
-    baseName = project.name + '-all'
+    baseName = project.name + '-with-dependencies'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
@@ -37,6 +39,28 @@ processResources {
                 'version': version
         ]
     }
+}
+
+static def getCurrentTimestamp ()
+{
+    Date today = new Date ()
+    SimpleDateFormat df = new SimpleDateFormat ("HH:mm:ss dd-MM-yyyy (GMT+1)")
+    return df.format (today)
+}
+
+task createProperties(dependsOn: processResources) {
+    doLast {
+        new File("$buildDir/resources/main/app.properties").withWriter { w ->
+            Properties p = new Properties()
+            p['version'] = project.version.toString()
+            p['buildtimestamp'] = getCurrentTimestamp().toString()
+            p.store w, null
+        }
+    }
+}
+
+classes {
+    dependsOn createProperties
 }
 
 

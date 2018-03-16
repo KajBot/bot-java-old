@@ -86,7 +86,6 @@ public class KajBot extends ListenerAdapter {
                 "          -'                "
 
                 + "\n\tVersion:              " + IKajBot.getAppInfo().VERSION
-                + "\n\tBuild:                " + IKajBot.getAppInfo().BUILD_NUMBER
                 + "\n\tBuild Timestamp:      " + IKajBot.getAppInfo().BUILD_TIMESTAMP
                 + "\n\tJVM:                  " + System.getProperty("java.version")
                 + "\n\tJDA:                  " + JDAInfo.VERSION

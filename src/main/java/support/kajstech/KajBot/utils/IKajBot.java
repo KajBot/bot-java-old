@@ -12,7 +12,6 @@ public class IKajBot {
 
 
     public final String VERSION;
-    public final String BUILD_NUMBER;
     public final String BUILD_TIMESTAMP;
 
     private IKajBot() {
@@ -24,8 +23,7 @@ public class IKajBot {
             LogHelper.error(IKajBot.class, "Failed to load app.properties");
         }
         this.VERSION = prop.getProperty("version");
-        this.BUILD_NUMBER = prop.getProperty("buildNumber");
-        this.BUILD_TIMESTAMP = prop.getProperty("buildTimestamp");
+        this.BUILD_TIMESTAMP = prop.getProperty("buildtimestamp");
     }
 
     public static boolean isInteger(String s) {
