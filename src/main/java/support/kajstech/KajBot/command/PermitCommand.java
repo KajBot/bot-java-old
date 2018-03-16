@@ -14,6 +14,7 @@ public class PermitCommand extends Command {
 
     @Override
     public void executeCommand(String[] args, MessageReceivedEvent e, MessageSender chat) {
+        List <Member> userMention = e.getMessage().getMentionedMembers();
 
         switch (args.length) {
             case 1:
@@ -21,16 +22,17 @@ public class PermitCommand extends Command {
                     chat.sendMessage("\u26D4 Du har ikke adgang til at gøre dette!");
                     return;
                 }
-
                 if (!e.getMessage().getMentionedUsers().isEmpty() && Info.BLASTLIST_ENABLED.equalsIgnoreCase("true")) {
-                    permitted.add(e.getMessage().getMentionedMembers().get(0));
-                    chat.sendMessage(e.getMessage().getMentionedUsers().get(0) + " har nu adgang til at sende blacklisted links de næste 60 sekunder!");
-                    new Timer().schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            permitted.remove(e.getMessage().getMentionedMembers().get(0));
-                        }
-                    }, 60000);
+                    for(Member member : userMention) {
+                        permitted.add(member);
+                        chat.sendMessage(member.getAsMention() + " har nu adgang til at sende blacklisted ord/links de næste 60 sekunder!");
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                permitted.remove(e.getMessage().getMentionedMembers().get(0));
+                            }
+                        }, 60000);
+                    }
                 }
         }
 

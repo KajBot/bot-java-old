@@ -11,5 +11,6 @@
     "token": "",
     "blacklisted": "example.com, anotherexample.com, test phrase, test",
     "twitchcheck": "false",
-    "adminid": ""
+    "adminid": "",
+    "blacklistlinksenabled": "false"
 }

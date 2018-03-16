@@ -64,7 +64,7 @@ public class InfoCommand extends Command {
         EmbedBuilder embed = new EmbedBuilder()
                 .setAuthor(nickname, null, icon).setThumbnail(icon);
 
-        embed.addField(":spy: Identitet", "ID `"+id+"`\n"+
+        embed.addField(":spy: Identitet", "ID: `"+id+"`\n"+
                 "Brugernavn: `"+name+ "#" +dis+"`", true);
 
         embed.addField(":first_quarter_moon: Status", "Spil: `"+game+"`\nStatus: `"+status+"`\n", true);

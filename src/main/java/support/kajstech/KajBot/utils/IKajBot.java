@@ -9,6 +9,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class IKajBot {
+
+
     public static boolean isInteger(String s) {
         return isInteger(s,10);
     }

@@ -24,4 +24,5 @@ public class Info {
 
     public static final String BLACKLISTED = CONFIG.getValue("blacklisted");
     public static final String BLASTLIST_ENABLED = CONFIG.getValue("blacklistenabled");
+    public static final String BLACKLIST_LINKS_ENABLED = CONFIG.getValue("blacklistlinksenabled");
 }

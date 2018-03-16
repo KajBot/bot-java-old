@@ -345,7 +345,7 @@ public class MusicCommand extends Command {
                 + "\n\t> shuffle**\\***                 - 'Shuffle' playlisten\n"
                 + "\n\t> reset**\\***                    - Resetter musik afspilleren\n"
                 + "\n\t> lydstyrke**\\***             - Ændre musikkens lydstyrke\n\n"
-                + "kommandoer med **\\***  kræver at du er 'Admin'"
+                + "kommandoer med **\\***  kræver at du har special adgang"
                 + "\n"
 
         );
