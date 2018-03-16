@@ -51,7 +51,7 @@ public class KajBot extends ListenerAdapter {
         builder.setAudioEnabled(true);
         builder.setAudioSendFactory(new NativeAudioSendFactory());
         builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
-        builder.setGame(Game.watching("kajstech.support"));
+        builder.setGame(Game.watching(Info.DEFAULT_GAME));
         builder.setBulkDeleteSplittingEnabled(false);
         builder.setEventManager(new ThreadedEventManager());
 

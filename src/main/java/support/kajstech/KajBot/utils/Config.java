@@ -20,7 +20,7 @@ class Config {
         }
 
         JSONObject object = read(configFile);
-        if (object.has("token") && object.has("prefix") && object.has("ownerid") && object.has("adminid") && object.has("twitchchannelid") && object.has("twitchclientid") && object.has("livepostchannel") && object.has("twitchcheck") && object.has("blacklisted") && object.has("blacklistenabled") && object.has("blacklistlinksenabled") && object.has("blacklistbypassid")) {
+        if (object.has("token") && object.has("prefix") && object.has("ownerid") && object.has("adminid") && object.has("twitchchannelid") && object.has("twitchclientid") && object.has("livepostchannel") && object.has("twitchcheck") && object.has("blacklisted") && object.has("blacklistenabled") && object.has("blacklistlinksenabled") && object.has("blacklistbypassid") && object.has("defaultgame")) {
             configObject = object;
         } else {
             create(); // If a value is missing, regenerate the config file.
@@ -56,6 +56,8 @@ class Config {
                             .put("blacklistenabled", "false")
                             .put("blacklistlinksenabled", "false")
                             .put("blacklistbypassid", "")
+
+                            .put("defaultgame", "KajsTech.Support")
 
                             .toString(4)
                             .getBytes());

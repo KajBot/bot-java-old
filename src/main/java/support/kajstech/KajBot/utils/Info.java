@@ -24,4 +24,6 @@ public class Info {
     public static final String BLASTLIST_ENABLED = CONFIG.getValue("blacklistenabled");
     public static final String BLACKLIST_LINKS_ENABLED = CONFIG.getValue("blacklistlinksenabled");
     public static final String BLACKLIST_BYPASS_ID = CONFIG.getValue("blacklistbypassid");
+
+    public static final String DEFAULT_GAME = CONFIG.getValue("defaultgame");
 }
