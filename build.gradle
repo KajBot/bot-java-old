@@ -41,10 +41,10 @@ processResources {
     }
 }
 
-static def getCurrentTimestamp ()
+private static def getCurrentTimestamp ()
 {
     Date today = new Date ()
-    SimpleDateFormat df = new SimpleDateFormat ("HH:mm:ss dd-MM-yyyy (GMT+1)")
+    SimpleDateFormat df = new SimpleDateFormat ("HH:mm:ss dd-MM-yyyy")
     return df.format (today)
 }
 
@@ -53,7 +53,7 @@ task createProperties(dependsOn: processResources) {
         new File("$buildDir/resources/main/app.properties").withWriter { w ->
             Properties p = new Properties()
             p['version'] = project.version.toString()
-            p['buildtimestamp'] = getCurrentTimestamp().toString()
+            p['buildtimestamp'] = getCurrentTimestamp().toString() + " (GMT+1)"
             p.store w, null
         }
     }
