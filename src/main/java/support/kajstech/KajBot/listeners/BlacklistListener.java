@@ -19,21 +19,22 @@ public class BlacklistListener extends ListenerAdapter {
         if (event.getAuthor() == event.getJDA().getSelfUser()) return;
 
 
-        if (!(PermitCommand.permitted.contains(event.getMessage().getMember()) || event.isFromType(ChannelType.PRIVATE) || IKajBot.isAdmin(event.getMember()) || event.getMember().getRoles().stream().anyMatch(r -> r.getId().equals(Info.BLACKLIST_BYPASS_ID)))) {
+        if (!(PermitCommand.permitted.contains(event.getMessage().getMember()) || event.isFromType(ChannelType.PRIVATE) || IKajBot.isAdmin(event.getMember()) || event.getMember().getRoles().stream().anyMatch(r -> r.getName().equals(Info.BLACKLIST_BYPASS_ID)))) {
 
             Pattern p = Pattern.compile(URL_REGEX);
             Matcher m = p.matcher(event.getMessage().getContentRaw());
             if (m.find()) {
-                if (Info.BLACKLIST_LINKS_ENABLED.equalsIgnoreCase("true")) return;
-                IKajBot.sendMessage(event.getMember().getAsMention() + " \u26D4 Hey, beskeder der indeholder links er ikke tilladte her inde", event.getTextChannel());
+                if (Info.BLACKLIST_LINKS_ENABLED.equalsIgnoreCase("false")) return;
+                IKajBot.sendMessage(event.getMember().getAsMention() + " \u26D4 Hey, beskeder der indeholder links er ikke tilladte herinde", event.getTextChannel());
                 event.getMessage().delete().queue();
                 return;
             }
 
 
             for (String item : Info.BLACKLISTED.split("\\s*,\\s*")) {
-                if (Info.BLASTLIST_ENABLED.equalsIgnoreCase("true") && event.getMessage().getContentRaw().contains(item)) {
-                    IKajBot.sendMessage(event.getMember().getAsMention() + " \u26D4 Hey, din besked indholde et eller flere ord/links om ikke er tilladte her inde", event.getTextChannel());
+                if (Info.BLACKLIST_ENABLED.equalsIgnoreCase("false")) return;
+                if (event.getMessage().getContentRaw().contains(item) && Info.BLACKLISTED.length() > 2) {
+                    IKajBot.sendMessage(event.getMember().getAsMention() + " \u26D4 Hey, din besked indholde et eller flere ord/links om ikke er tilladte herinde", event.getTextChannel());
                     event.getMessage().delete().queue();
                     return;
                 }

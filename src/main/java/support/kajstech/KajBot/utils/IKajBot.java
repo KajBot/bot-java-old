@@ -43,7 +43,7 @@ public class IKajBot {
     }
 
     public static boolean isAdmin(Member member) {
-        return member.getRoles().stream().anyMatch(r -> r.getId().equals(Info.ADMIN_ID));
+        return member.getRoles().stream().anyMatch(r -> r.getName().equals(Info.ADMIN_ID));
     }
 
     public static IKajBot getAppInfo() {

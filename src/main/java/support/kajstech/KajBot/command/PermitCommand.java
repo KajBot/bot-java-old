@@ -22,7 +22,11 @@ public class PermitCommand extends Command {
                     chat.sendMessage("\u26D4 Du har ikke adgang til at gøre dette!");
                     return;
                 }
-                if (!e.getMessage().getMentionedUsers().isEmpty() && Info.BLASTLIST_ENABLED.equalsIgnoreCase("true")) {
+                if (!e.getMessage().getMentionedUsers().isEmpty()) {
+                    if(Info.BLACKLIST_ENABLED.equalsIgnoreCase("false") && Info.BLACKLIST_LINKS_ENABLED.equalsIgnoreCase("false")){
+                        chat.sendMessage("Hov, blacklist er slået fra!");
+                        return;
+                    }
                     for (Member member : userMention) {
                         permitted.add(member);
                         chat.sendMessage(member.getAsMention() + " har nu adgang til at sende blacklisted ord/links de næste 60 sekunder!");
