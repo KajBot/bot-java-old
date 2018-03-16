@@ -15,9 +15,16 @@ public class YouTubeHelper {
 
     private static String LIVE_API_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&type=video&eventType=live&maxResults=1&channelId=" + Info.YT_CHANNEL_ID + "&key=" + Info.YT_API_KEY;
 
+    private static boolean live = false;
+
     public static void refresh(ReadyEvent jda) throws IOException {
         if (checkLive()) {
-            jda.getJDA().getTextChannelById(Info.LIVE_POST_CHANNEL).sendMessage(getName() + " er live lige nu på YouTube! Se med her https://www.youtube.com/watch?v=" + getId()).queue();
+            if (!live) {
+                jda.getJDA().getTextChannelById(Info.LIVE_POST_CHANNEL).sendMessage(getName() + " er live lige nu på YouTube! Se med her https://www.youtube.com/watch?v=" + getId()).queue();
+                live = true;
+            }
+        }else {
+            live = false;
         }
     }
 

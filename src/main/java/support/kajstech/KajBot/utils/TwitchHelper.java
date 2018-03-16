@@ -15,9 +15,16 @@ public class TwitchHelper {
 
     private static String CHANNELS_API = "https://api.twitch.tv/kraken/channels/" + Info.TWITCH_CHANNEL_ID + "/?client_id=" + Info.TWITCH_CLIENT_ID + "&api_version=5";
 
+    private static boolean live = false;
+
     public static void refresh(ReadyEvent jda) throws IOException {
         if (checkLive()) {
-            jda.getJDA().getTextChannelById(Info.LIVE_POST_CHANNEL).sendMessage(getName() + " er live lige nu, og der bliver spillet " + getGame() + "! Se med her " + getURL()).queue();
+            if (!live) {
+                jda.getJDA().getTextChannelById(Info.LIVE_POST_CHANNEL).sendMessage(getName() + " er live lige nu, og der bliver spillet " + getGame() + "! Se med her " + getURL()).queue();
+                live = true;
+            }
+        }else {
+            live = false;
         }
     }
 

@@ -96,7 +96,6 @@ public class KajBot extends ListenerAdapter {
     public static void updateStream(ReadyEvent event) {
         while (true) {
             try {
-                if (Info.YTCHECK.equalsIgnoreCase("false") && Info.YTCHECK.equalsIgnoreCase("false")) return;
                 if (Info.TWITCHCHECK.equalsIgnoreCase("true")) TwitchHelper.refresh(event);
                 if (Info.YTCHECK.equalsIgnoreCase("true")) YouTubeHelper.refresh(event);
                 Thread.sleep(60000);
